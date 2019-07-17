@@ -30,11 +30,13 @@ document.addEventListener(
       });
     }
     $(".modal").modal();
+    document.getElementById('submit-new-pokemon').onclick = ()=>{
+      showMyTeamOfPokemon();
+    }
+
     showMyTeamOfPokemon();
     
-  document.getElementById('submit-new-pokemon').onclick = ()=>{
-    showMyTeamOfPokemon();
-  }
+  
 
 
   },
