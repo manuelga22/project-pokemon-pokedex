@@ -5,7 +5,7 @@ document.addEventListener(
       let myTeamContainer = document.getElementById("container-of-myteam");
       myTeamContainer.innerHTML = "";
       axios.get("http://localhost:3000/myteam/add").then(myPokemons => {
-        console.log(myPokemons.data);
+        console.log("pokemon data",myPokemons.data);
         myPokemons.data.team.forEach(myPokemons => {
 
           let eachOfThePokemonOfMyTeam = document.createElement("div");
@@ -17,8 +17,10 @@ document.addEventListener(
            <p>${myPokemons.move2}</p>
            <p>${myPokemons.move3}</p>
            <p>${myPokemons.move4}</p>
-           <p>${myPokemons.abilities}</p>           
-           <button href="/myteam/delete/${myPokemons._id}" class="waves-effect waves-light btn">Delete</button>
+           <p>${myPokemons.abilities}</p> 
+           <form action = "/myteam/delete/${myPokemons._id}" method="POST">       
+           <button  class="waves-effect waves-light btn" >Delete</button>
+           </form>
            <button href= "/myteam/edit/${
              myPokemons._id
            }" class="waves-effect waves-light btn">Edit</button>

@@ -38,7 +38,8 @@ router.post('/myteam/add', uploadCloud.single('pokemonImage'),(req,res,next)=>{
     req.user.team.push(pokemon._id);
     req.user.save()
     .then(()=>{
-       console.log('yay')
+       console.log('yay');
+       res.redirect('/myteam');
     }).catch((err)=>console.log(err))
   
      console.log('yay')
@@ -62,15 +63,22 @@ router.post('/myteam/update/:id',(req,res,next)=>{
   }else{
   Pokemon.findByIdAndUpdate(req.params.id, req.body)
   .then(()=>{
-    res.redirect('/teamViews/myteam')
+    res.redirect('/myteam')
   }).catch((err)=> next(err))}
 })
 
 router.post('/myteam/delete/:id',(req,res,next)=>{
+  console.log("this is the post for deleting pokemon")
+  User.findById(req.params.id)
+  .then(()=>{
+    console.log("delete the pokemon")
+   res.redirect('/myTeam');
+  }).catch((err)=> console.log(err))
+
    Pokemon.findByIdAndRemove(req.params.id)
    .then(()=>{
      console.log('deleted')
-     res.redirect('/teamViews/myTeam');
+     res.redirect('/myTeam');
    }).catch((err)=> next(err))
    
 })
