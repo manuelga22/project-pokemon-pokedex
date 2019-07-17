@@ -1,0 +1,54 @@
+body {
+  //padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+
+.poke-btn {
+  color:black !important;
+  background-color: rgba(250, 250, 250,.8) !important;
+}
+
+#container-of-pokemon{
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.pokemon-container{
+  width:100px;
+  margin: 5px 5%;
+}
+.homeScreenStuff{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border:solid;
+}
+
+.sign-up-body{
+  position: relative;
+  height: 100vh;
+  background-color: red;
+
+}
+.sign-up-box{
+    width: 90%;
+    background-color: white;
+    position: absolute;
+    top: 25%;
+    left: 15%;
+}
+.sign-up-btn{
+  width:100%;
+}
+#container-of-myteam{
+  display:flex;
+  flex-wrap:wrap;
+}
+
+
+.myTeamImages{
+  width:150px;
+  height:120px;
+}

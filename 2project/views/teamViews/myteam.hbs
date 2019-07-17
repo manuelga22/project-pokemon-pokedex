@@ -1,0 +1,84 @@
+<div class = "userNav">
+ <a href="#modal1" class="btn-floating btn-large waves-effect waves-light lightgreen modal-trigger">+</a>
+</div>
+
+<div id="container-of-myteam">
+    
+</div>
+
+
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+       <h4>Add/Create a Pokemon</h4>
+    <form action = "/myteam/add" method="POST" enctype="multipart/form-data">
+
+    <label for="pokemonName"></label>
+    <input name="pokemonName" placeholder="Name">
+
+    <label for="pokemonImage"></label>
+    <input name="pokemonImage" type="file" placeholder="image">
+
+    <label for="pokemon-types"></label>
+    <input name="pokemonTypes" placeholder="type">
+
+    <label for="pokemonMoves1"></label>
+    <input name="pokemonMoves1" placeholder="enter the first move of the pokemon">
+
+    
+    <label for="pokemonMoves2"></label>
+    <input name="pokemonMoves2" placeholder="enter the second move of the pokemon">
+
+   
+    <label for="pokemonMoves3"></label>
+    <input name="pokemonMoves3" placeholder="enter the third move of the pokemon">
+
+    <label for="pokemonMoves4"></label>
+    <input name="pokemonMoves4" placeholder="enter the fourth move of the pokemon">
+
+    <label for="pokemon-abilities"></label>
+    <input name="pokemonAbilities" placeholder="enter abilities of the pokemon">
+  </div>
+  <div class="modal-footer">
+      <button id="submit-new-pokemon"   class="modal-close waves-effect waves-green btn-flat">ADD POKEMON</button>
+  </div>
+  </form>
+</div>
+
+  <div id="edit" class="modal">
+    <form action="/myteam/update/{{pokemons._id}}" method="POST">
+    <div class="modal-content">
+      <label for="pokemonName"></label>
+    <input name="pokemonName" placeholder="Name" value="{{pokemons.nickName}}">
+
+    <label for="pokemonImage"></label>
+    <input name="pokemonImage" type="file" placeholder="image" value={{pokemons.pokemonImage}}>
+
+    <label for="pokemon-types"></label>
+    <input name="pokemonTypes" placeholder="type" value={{pokemons.pokemonType}}>
+
+    <label for="pokemonMoves1"></label>
+    <input name="pokemonMoves1" placeholder="enter the first move of the pokemon" value={{pokemons.move1}}>
+
+    
+    <label for="pokemonMoves2"></label>
+    <input name="pokemonMoves2" placeholder="enter the second move of the pokemon" value={{pokemons.move2}}>
+
+   
+    <label for="pokemonMoves3"></label>
+    <input name="pokemonMoves3" placeholder="enter the third move of the pokemon"  value={{pokemons.move3}}>
+
+    <label for="pokemonMoves4"></label>
+    <input name="pokemonMoves4" placeholder="enter the fourth move of the pokemon"  value={{pokemons.move4}}>
+
+    <label for="pokemon-abilities"></label>
+    <input name="pokemonAbilities" placeholder="enter abilities of the pokemon" value = {{pokemons.abilities}}>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+    <button  class="waves-effect waves-light btn">button</button>
+    </form>
+  </div>
+
+<script src="javascripts/script.js"></script>
