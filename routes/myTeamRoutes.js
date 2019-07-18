@@ -13,10 +13,11 @@ router.get('/myteam',(req,res,next)=>{
 });
 
 router.get('/myteam/add',(req,res,next)=>{
-  User.findById(req.user._id).populate('team')
+  console.log(req.body)
+  User.findById(req.user._id).populate('team')    
   .then((user)=>{
-    console.log(user.team)
-     res.json(user);      
+    res.json(user);  
+    console.log(user.team.length)
   }).catch((err)=>console.log(err))
 });
 
@@ -47,34 +48,31 @@ router.post('/myteam/add', uploadCloud.single('pokemonImage'),(req,res,next)=>{
 }
 });
 
-router.get('/myteam/edit/:id',(req,res,next)=>{
-  if(!req.user){
-    res.redirect('/');
-  }else{
-  Pokemon.findById(req.params.id)
-  .then((pokemon)=>{
-    res.render('#edit',{pokemon:pokemon})
-  }).catch((err)=> next(err))}
-});
 
 router.post('/myteam/update/:id',(req,res,next)=>{
   if(!req.user){
     res.redirect('/');
   }else{
-  Pokemon.findByIdAndUpdate(req.params.id, req.body)
-  .then(()=>{
-    res.redirect('/myteam')
-  }).catch((err)=> next(err))}
+    console.log("new body",req.body);
+   let theId = req.params.id;
+  Pokemon.findByIdAndUpdate(theId, req.body)
+  .then((pokemon)=>{
+    console.log(pokemon,"updated")
+    res.redirect('/myteam');
+  }).catch((err)=> next(err))
+}
+
+
 })
 
 router.post('/myteam/delete/:id',(req,res,next)=>{
   console.log("this is the post for deleting pokemon")
-  User.findById(req.params.id)
+  User.findById(req.params._id)
   .then(()=>{
+    console.log(req)
     console.log("delete the pokemon")
    res.redirect('/myTeam');
   }).catch((err)=> console.log(err))
-
    Pokemon.findByIdAndRemove(req.params.id)
    .then(()=>{
      console.log('deleted')
