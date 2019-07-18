@@ -23,18 +23,20 @@ document.addEventListener(
           <img src=${poke.info.sprites.front_default}>
 
           <div id="pokemon-type-${poke.info.id}">
-          <p>types: </p>
+          <h5>types: </h5>
           <p>${poke.info.types[0].type.name}</p>
           </div>
           <div>
-          <p>weight: ${poke.info.weight} pounds</p>
-          <p>height: ${poke.info.height} feet</p>
+         <h5>Weight:</h5>
+          <p> ${poke.info.weight} pounds</p>
+         <h5>Height:</h5>
+          <p> ${poke.info.height} feet</p>
           </div>
-          <div id = "ablities-${poke.info.id}">
-          
+          <div id = "abilities-${poke.info.id}">
+           <h5>Abilities</h5>
           </div>
           <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Back</a>
           </div>
 
           </div>
@@ -47,6 +49,12 @@ document.addEventListener(
             let textnode = document.createTextNode(`${poke.info.types[1].type.name}`)
             node.appendChild(textnode);
             document.getElementById(`pokemon-type-${poke.info.id}`).appendChild(node);
+         }
+         if(poke.info.abilities.length>1){
+          let node2 = document.createElement('p');
+          let textnode2 = document.createTextNode(`${poke.info.abilities[1].ability.name}`)
+          node2.appendChild(textnode2);
+          document.getElementById(`abilities-${poke.info.id}`).appendChild(node2);
          }
           document.getElementById("nextbtn").onclick = () => {
             displayAllPokemon(pokemons.next);

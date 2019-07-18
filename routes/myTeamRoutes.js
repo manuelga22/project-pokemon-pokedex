@@ -49,20 +49,28 @@ router.post('/myteam/add', uploadCloud.single('pokemonImage'),(req,res,next)=>{
 });
 
 
-router.post('/myteam/update/:id',(req,res,next)=>{
+router.post('/myteam/update/:id', uploadCloud.single('pokemonImage'),(req,res,next)=>{
   if(!req.user){
     res.redirect('/');
-  }else{
+   }else{
     console.log("new body",req.body);
    let theId = req.params.id;
-  Pokemon.findByIdAndUpdate(theId, req.body)
+   let data={
+     nickName: req.body.nickName,
+     pokemonType:req.body.pokemonType,
+     pokemonImage:req.file.url,
+     move1:req.body.move1,
+     move2:req.body.move2,
+     move3:req.body.move3,
+     move4:req.body.move4,
+     abilities:req.body.abilities
+   }
+  Pokemon.findByIdAndUpdate(theId, data)
   .then((pokemon)=>{
     console.log(pokemon,"updated")
     res.redirect('/myteam');
   }).catch((err)=> next(err))
-}
-
-
+  }
 })
 
 router.post('/myteam/delete/:id',(req,res,next)=>{
