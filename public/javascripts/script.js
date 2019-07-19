@@ -2,9 +2,10 @@ document.addEventListener(
   "DOMContentLoaded",
   () => {
     function showMyTeamOfPokemon() {
+      let baseUrl = process.env.MONGODB_URI
       let myTeamContainer = document.getElementById("container-of-myteam");
       myTeamContainer.innerHTML = "";
-      axios.get("http://localhost:3000/myteam/add").then(myPokemons => {
+      axios.get('/myteam/add', {useNewUrlParser: true}).then(myPokemons => { 
         console.log("pokemon data", myPokemons.data);
 
         myPokemons.data.team.forEach(myPokemons => {
