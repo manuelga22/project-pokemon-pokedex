@@ -12,16 +12,6 @@ router.get('/signup',(req,res,next)=>{
 router.get('/login',(req,res,next)=>{
   res.render('userViews/login', {message: req.flash('error')});
 })
-router.get('/dashboard',(req,res,next)=>{
-  if(!req.user){
-    res.redirect('/login');
-  }
-  User.find()
-  .then((users)=>{
-    res.render('userViews/dashboard',{users:users});
-  }).catch((err)=>console.log(err))
-  
-})
 
 router.post('/signup/create',(req,res,next)=>{
    console.log(req.body);
@@ -58,7 +48,8 @@ router.post('/signup/create',(req,res,next)=>{
           password:hashedPassWord
         })
         .then(()=>{
-          res.redirect('/dashboard');
+          req.flash('error','Account created succesfully');
+          res.redirect('/login');
         }).catch((err)=>console.log(err))
        }
     })
@@ -67,13 +58,14 @@ router.post('/signup/create',(req,res,next)=>{
  })
 
  router.post('/login', passport.authenticate("local",{ 
-  successRedirect: "/dashboard",
+  successRedirect: "/",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
  }))
 
  router.get('/logout', (req, res, next)=>{
+  req.flash('error',`you logged out of ${req.user.username}`)
   req.logout();
   res.redirect("/");
 })

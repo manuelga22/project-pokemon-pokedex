@@ -2,7 +2,7 @@ const mongoose =require('mongoose');
 const Schema = mongoose.Schema;
 
 const pokemonSchema = new Schema({
-  nickName:{type:String, required:true},
+  nickName:{type:String},
   pokemonType:{type:String},
   pokemonImage:{type:String},
   move1:{type:String},

@@ -49,7 +49,7 @@ document.addEventListener(
             let textnode = document.createTextNode(`${poke.info.types[1].type.name}`)
             node.appendChild(textnode);
             document.getElementById(`pokemon-type-${poke.info.id}`).appendChild(node);
-         }
+          }
          if(poke.info.abilities.length>1){
           let node2 = document.createElement('p');
           let textnode2 = document.createTextNode(`${poke.info.abilities[1].ability.name}`)
@@ -69,7 +69,7 @@ document.addEventListener(
 
           $(`#pokemon${poke.info.id}-modal`).modal();
         });
-      }, 300);
+      }, 800);
     }
     async function getAllPokemon(urlToFetch) {
       try {

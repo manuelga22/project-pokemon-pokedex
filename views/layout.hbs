@@ -7,18 +7,16 @@
   <title>Document</title>
   <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-
-
 </head>
 <body>
-   <nav>
+<nav>
   <div class="nav-wrapper red">
     <a href="/" class=" waves-effect brand-logo">Pokedex</a>  
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       {{#if currentUser}}
       <li><a>Welcome {{currentUser.nickName}}</a></li>
       <li><a href="/myteam">My Team</a></li>
-      <li><a href="/dashboard">Go to Dashboard</a></li>
       <li><a href="/seeAllPokemon" onclick=" displayAllPokemon("https://pokeapi.co/api/v2/pokemon")">See the Pokedex</a></li>
       <li><a href="/logout">Log Out</a></li>
       {{else}}
@@ -28,19 +26,41 @@
     </ul>
   </div>
 </nav>
+  <ul class="sidenav" id="mobile-demo">
+     {{#if currentUser}}
+      <li><a>Welcome {{currentUser.nickName}}</a></li>
+      <li><a href="/myteam">My Team</a></li>
+      <li><a href="/seeAllPokemon" onclick=" displayAllPokemon("https://pokeapi.co/api/v2/pokemon")">See the Pokedex</a></li>
+      <li><a href="/logout">Log Out</a></li>
+      {{else}}
+      <li><a href="/login">Log In</a></li>
+      <li><a href="/signup">Sign Up</a></li>
+      {{/if}}
+  </ul>
+    
 
 
   
- {{#if msg}} 
+ {{!-- {{#if msg}} 
+ <script>
+   M.toast({html: '{{msg}}'})
+ </script>
   <p>{{msg}}</p>
- {{/if}}
+ {{/if}} --}}
+
   {{{body}}}
 
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
- 
-
+   <script>
+      $('.sidenav').sidenav();
+    </script>    
+ {{#if msg}} 
+ <script>
+   M.toast({html: '{{msg}}'})
+ </script>
+ {{/if}}
 </body>
 </html>
