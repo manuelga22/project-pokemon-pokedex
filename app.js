@@ -96,6 +96,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+res.locals.domainName = process.env.MONGODB_URI;
+
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   res.locals.msg         = req.flash('error')
